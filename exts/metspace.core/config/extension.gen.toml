@@ -1,0 +1,9 @@
+
+[package]
+    archivePath = "./archives/metspace.core/metspace.core-0.0.1.zip"
+
+    [package.publish]
+        kitVersion = "106.0.1+release.123016.6906dfd7.gl"
+        date = 1720663551
+        buildNumber = "0.0.1+main.844.8a56d986.gl"
+        repoName = "metspace"

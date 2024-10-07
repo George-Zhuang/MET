@@ -1,0 +1,37 @@
+met:
+  version: 0.0.1
+  global:
+    seed: 1
+    camera_num: 0
+    lidar_num: 0
+    simulation_length: 60
+  scene:
+    asset_path: /isaac-sim/Assets/Isaac/4.0/Isaac/Environments/Outdoor/Rivermark/rivermark_navmesh_01.usd
+  character:
+    asset_path: /isaac-sim/Assets/Isaac/4.0/Isaac/People/Characters
+    command_file: /isaac-sim/tmp/mettest/default_command.txt # default_command.txt
+    filters:
+    num: 8
+  robot:
+    command_file: /isaac-sim/tmp/mettest/default_robot_track_command.txt # default_robot_command.txt
+    nova_carter_num: 2
+    transporter_num: 1
+    carter_v1_num: 1
+    dingo_num: 1
+    jetbot_num: 1
+    write_data: true
+  replicator:
+    writer: METWriter
+    parameters:
+      output_dir: /isaac-sim/tmp/mettest/rivermark_navmesh_01_001
+      rgb: true
+      distance_to_camera: true
+      bbox: false
+      semantic_segmentation: false
+    # writer: TaoWriter
+    # parameters:
+    #   output_dir: /isaac-sim/tmp/mettest
+    #   rgb: True
+    #   bbox: False
+    #   semantic_segmentation: False
+    #   video: False

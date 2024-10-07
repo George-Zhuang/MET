@@ -1,0 +1,28 @@
+metspace:
+  version: 0.0.1
+  global:
+    seed: 0
+    camera_num: 1
+    lidar_num: 0
+    simulation_length: 10
+  scene:
+    asset_path: F:/2024_EVT/assets/isaac-sim-assets/Assets/Isaac/4.0/Isaac/Environments/Simple_Warehouse/warehouse.usd
+  character:
+    asset_path:
+    command_file: default_command.txt
+    filters:
+    num: 1
+  robot:
+    command_file: default_robot_command.txt
+    nova_carter_num: 0
+    transporter_num: 0
+    jetbot_num: 1
+    write_data: false
+  replicator:
+    writer: TaoWriter
+    parameters:
+      output_dir:
+      rgb: True
+      bbox: True
+      semantic_segmentation: False
+      video: False

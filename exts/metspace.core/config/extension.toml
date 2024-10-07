@@ -1,0 +1,118 @@
+[package]
+version = "0.0.1"
+authors = ["Zheng Guangze"]
+title = "METScape core"
+description="Extension for generating synthetic data for multimodal embodied tracking"
+readme  = "docs/README.md"
+repository = ""
+category = "Synthetic Data"
+keywords = ["agent", "metropolis","simulation", "synthetic data"]
+changelog="docs/CHANGELOG.md"
+preview_image = "data/preview.png"
+icon = "data/icon.png"
+
+
+[dependencies]
+"omni.usd" = {}
+"omni.ui" = {}
+"omni.kit.menu.utils" = {}
+"omni.kit.quicklayout" = {}
+"omni.kit.stage_templates" = {}
+"omni.anim.navigation.bundle" = {}
+"omni.anim.retarget.bundle" = {}
+"omni.kit.scripting" = {}
+"omni.kit.window.title" = {}
+"omni.kit.window.stage" = {}  # loaded before this extension
+"omni.kit.window.console" = {}  # loaded before this extension
+"omni.kit.window.property" = {}
+"omni.kit.mesh.raycast" = {}
+"omni.services.pip_archive" = {}
+"omni.isaac.sensor" = {}
+"omni.isaac.nucleus" = {}
+"omni.isaac.core" = {}
+
+"omni.anim.people" = { version="0.4.0" }
+"omni.replicator.core" = {}
+
+[[python.module]]
+name = "metspace.core"
+
+[settings]
+rtx.rtxsensor.coordinateFrameQuaternion = "0.5,-0.5,-0.5,-0.5"
+exts."metspace".behavior_script_settings.behavior_script_path = ""
+exts."metspace".behavior_script_settings.robot_behavior_script_path = ""
+exts."metspace".characters_parent_prim_path = "/World/Characters"
+exts."metspace".robots_parent_prim_path = "/World/Robots"
+exts."metspace".cameras_parent_prim_path = "/World/Cameras"
+exts."metspace".lidar_cameras_parent_prim_path = "/World/Lidars"
+exts."metspace".extend_data_generation_length = 0      # extend data generation time (in second)
+persistent.exts."metspace".hide_visualization = true
+
+# Asset settings
+exts."metspace".asset_settings.default_biped_assets_path = ""
+exts."metspace".asset_settings.exclusive_character_assets_folders = ["biped_demo"]
+exts."metspace".asset_settings.default_scene_path = ""
+exts."metspace".asset_settings.default_character_asset_path = ""
+exts."metspace".asset_settings.default_nova_carter_asset_path = ""
+exts."metspace".asset_settings.default_transporter_asset_path = ""
+exts."metspace".asset_settings.default_carter_v1_asset_path = ""
+exts."metspace".asset_settings.default_dingo_asset_path = ""
+exts."metspace".asset_settings.default_jetbot_asset_path = ""
+
+persistent.exts."metspace".skip_starting_frames = 5
+persistent.exts."metspace".frame_write_interval = 1
+
+# Randomization
+persistent.exts."metspace".spawn_apothem = 50
+# - Camera Randomization
+persistent.exts."metspace".max_camera_height = 3
+persistent.exts."metspace".min_camera_height = 2
+persistent.exts."metspace".character_focus_height = 0.7
+persistent.exts."metspace".max_camera_look_down_angle = 60
+persistent.exts."metspace".min_camera_look_down_angle = 0
+persistent.exts."metspace".max_camera_distance = 14
+persistent.exts."metspace".min_camera_distance = 6.5
+persistent.exts."metspace".min_camera_focallength = 13
+persistent.exts."metspace".max_camera_focallength = 23
+persistent.exts."metspace".randomize_camera_info = true
+persistent.exts."metspace".aim_camera_to_character = false
+persistent.exts."metspace".run_replicator_async = false
+
+# Configuration file
+persistent.exts.metspace.header = "metspace"
+exts."metspace".default_replicator_output_path = "ReplicatorResult"
+
+
+
+[[test]]
+dependencies = [
+    "omni.kit.test",
+    "omni.hydra.rtx",
+    "omni.usd.core",
+    "omni.kit.renderer.core",
+    "omni.timeline",
+    "omni.rtx.shadercache.vulkan",
+    "internal"
+]
+
+stdoutFailPatterns.exclude = [
+    "*Camera range specified does not exist in the scene*",
+    "*UserWarning: The NumPy module was reloaded*",
+    # waiting for Isaac team to fix
+    "*[Error] [carb] [Plugin: omni.sensors.nv.lidar.ext.plugin] Dependency: [omni::sensors::lidar::IGenericModelOutputIOFactory v0.1] failed to be resolved.*",
+    "*UserWarning: torch.distributed.reduce_op is deprecated, please use torch.distributed.ReduceOp instead*"
+]
+
+timeout = 3600
+
+args = [
+    "--/app/settings/fabricStageFrameHistoryCount=3",
+    "--/app/settings/fabricDefaultStageFrameHistoryCount=3",
+    "--/app/file/ignoreUnsavedStage=True",
+	"--no-window",
+	"--/windowless=True",
+    "--/persistent/isaac/asset_root/timeout=1.0",
+    '--/persistent/isaac/asset_root/default="./_test"'
+]
+
+pyCoverageIncludeDependencies = false

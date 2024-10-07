@@ -1,0 +1,28 @@
+
+# This file stores all the default values for config file. Some notes:
+# - seed will be generated in code.
+# - asset_paths will be provided in code.
+# - writer parameters are provided by each writer.
+
+global:
+  seed:
+  camera_num: 12
+  lidar_num: 0
+  camera_list: []
+  lidar_list: []
+  simulation_length: 600
+scene:
+  asset_path:
+character:
+  asset_path:
+  command_file: default_command.txt
+  filters: ""
+  num: 8
+robot:
+  command_file: default_robot_command.txt
+  nova_carter_num: 0
+  transporter_num: 0
+  write_data: false
+replicator:
+  writer: TaoWriter
+  parameters: {}

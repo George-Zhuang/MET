@@ -1,0 +1,1 @@
+/home/user/anaconda3/envs/met/lib/python3.10/site-packages/isaacsim

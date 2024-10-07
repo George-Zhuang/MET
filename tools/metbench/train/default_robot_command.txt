@@ -1,0 +1,3 @@
+Nova_Carter Idle 8.46
+Nova_Carter GoTo -2.85 16.46 0.01
+Nova_Carter_01 GoTo -0.8 7.36 0.01
